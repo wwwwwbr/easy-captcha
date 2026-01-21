@@ -1,0 +1,36 @@
+### IDEA ###
+~/*
+.idea/*
+*.iml
+*/target/*
+*/*.iml
+/.gradle/
+/application.pid
+.air.*
+/tmp/*
+*/tmp/*
+
+/bin/data
+/bin/logs
+/bin/*.exe
+/conf/*
+
+
+## 二进制文件
+/automated_Testing_arm64*
+/automated_Testing_amd64*
+/automated_Testing_amd64.exe
+
+
+## 生成的目录文件
+*.log
+/logs
+/data
+/upload
+/upload_chunk
+/plugs
+/plugs/*
+
+/build
+/temp
+
