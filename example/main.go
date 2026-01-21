@@ -2,8 +2,8 @@ package main
 
 import (
 	"fmt"
+
 	"github.com/wwwwwbr/easy-captcha"
-	"image/color"
 )
 
 const GifPath = "./build/captcha.gif"
@@ -24,10 +24,10 @@ func main() {
 	fmt.Println("======================")
 
 	simpleCaptcha := easyCaptcha.NewSimpleCaptcha(120, 60, 4)
-	simpleCaptcha.SetLineNum(4)
+	//simpleCaptcha.SetLineNum(4)
 	simpleCaptcha.SetSeed("qwertyuiop123")
-	simpleCaptcha.SetBackgroundColor(color.RGBA{100, 100, 100, 155})
-	simpleCaptcha.SetFont(easyCaptcha.LEXO)
+	//simpleCaptcha.SetBackgroundColor(color.RGBA{100, 100, 100, 155})
+	//simpleCaptcha.SetFont(easyCaptcha.LEXO)
 	err = simpleCaptcha.SaveFile(PngPath)
 	fmt.Println(err)
 	text = simpleCaptcha.Text()

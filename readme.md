@@ -1,5 +1,9 @@
 # easy-captcha
 
+## example
+![png](example/captcha1.png)
+![png](example/captcha2.png)
+![gif](example/captcha.gif)
 
 ## Install
 
