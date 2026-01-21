@@ -2,9 +2,8 @@ package main
 
 import (
 	"fmt"
+	"github.com/wwwwwbr/easy-captcha"
 	"image/color"
-
-	"github.com/wwwwwbr/easyCaptcha"
 )
 
 const GifPath = "./build/captcha.gif"
