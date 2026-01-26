@@ -9,11 +9,23 @@ import (
 const GifPath = "./build/captcha.gif"
 const PngPath = "./build/captcha.png"
 const HzPath = "./build/captcha_hz.png"
+const CalcPath = "./build/captcha_calc.png"
 
 func main() {
 	exampleChinese()
 	exampleSimple()
 	exampleGif()
+	exampleCalc()
+}
+
+func exampleCalc() {
+	calculationCaptcha := easyCaptcha.NewCalculationCaptcha(240, 100, 3)
+	text := calculationCaptcha.Text()
+	fmt.Println("result:", text)
+	err := calculationCaptcha.SaveFile(CalcPath)
+	if err != nil {
+		fmt.Println(err)
+	}
 }
 
 func exampleChinese() {
