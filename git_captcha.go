@@ -14,13 +14,13 @@ import (
 	"github.com/golang/freetype/truetype"
 )
 
-type GifCaptcha struct {
+type gifCaptcha struct {
 	baseCaptcha
 	gifImg *gif.GIF
 }
 
 func NewGifCaptcha(width, height, size int) Captcha {
-	gc := &GifCaptcha{
+	gc := &gifCaptcha{
 		baseCaptcha: baseCaptcha{
 			bgColor:   color.White,
 			width:     width,
@@ -36,7 +36,7 @@ func NewGifCaptcha(width, height, size int) Captcha {
 }
 
 // 生成图片
-func (g *GifCaptcha) generator() {
+func (g *gifCaptcha) generator() {
 
 	// 生成文字
 	if g.seed != "" {
@@ -111,14 +111,14 @@ func (g *GifCaptcha) generator() {
 	g.generated = true
 }
 
-func (g *GifCaptcha) Text() string {
+func (g *gifCaptcha) Text() string {
 	if !g.generated {
 		g.generator()
 	}
 	return g.text
 }
 
-func (g *GifCaptcha) GetBytes() ([]byte, error) {
+func (g *gifCaptcha) GetBytes() ([]byte, error) {
 	if !g.generated {
 		g.generator()
 	}
@@ -132,7 +132,7 @@ func (g *GifCaptcha) GetBytes() ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-func (g *GifCaptcha) SaveFile(savePath string) error {
+func (g *gifCaptcha) SaveFile(savePath string) error {
 	if !g.generated {
 		g.generator()
 	}
@@ -144,7 +144,7 @@ func (g *GifCaptcha) SaveFile(savePath string) error {
 	return err
 }
 
-func (g *GifCaptcha) Base64() (string, error) {
+func (g *gifCaptcha) Base64() (string, error) {
 	if !g.generated {
 		g.generator()
 	}

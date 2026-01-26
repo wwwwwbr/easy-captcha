@@ -8,32 +8,54 @@ import (
 
 const GifPath = "./build/captcha.gif"
 const PngPath = "./build/captcha.png"
+const HzPath = "./build/captcha_hz.png"
 
 func main() {
-	captcha := easyCaptcha.NewGifCaptcha(120, 60, 4)
-	err := captcha.SaveFile(GifPath)
-	fmt.Println(err)
+	exampleChinese()
+	exampleSimple()
+	exampleGif()
+}
+
+func exampleChinese() {
+
+	fp := "./example/SIMKAI.TTF"
+
+	captcha := easyCaptcha.NewChineseCaptcha(200, 100, 4, fp)
+	captcha.SetSeed("零壹贰叁肆伍陆柒捌玖拾佰仟万亿")
 
 	text := captcha.Text()
 	fmt.Println(text)
 
-	base64, err := captcha.Base64()
-	fmt.Println(err)
-	fmt.Println(base64)
+	err := captcha.SaveFile(HzPath)
+	if err != nil {
+		fmt.Println(err)
+	}
+}
 
-	fmt.Println("======================")
-
+func exampleSimple() {
 	simpleCaptcha := easyCaptcha.NewSimpleCaptcha(120, 60, 4)
 	//simpleCaptcha.SetLineNum(4)
 	simpleCaptcha.SetSeed("qwertyuiop123")
 	//simpleCaptcha.SetBackgroundColor(color.RGBA{100, 100, 100, 155})
 	//simpleCaptcha.SetFont(easyCaptcha.LEXO)
-	err = simpleCaptcha.SaveFile(PngPath)
+	err := simpleCaptcha.SaveFile(PngPath)
 	fmt.Println(err)
-	text = simpleCaptcha.Text()
+	text := simpleCaptcha.Text()
 	fmt.Println(text)
-	base64, err = simpleCaptcha.Base64()
+	base64, err := simpleCaptcha.Base64()
 	fmt.Println(err)
 	fmt.Println(base64)
+}
 
+func exampleGif() {
+	gifCaptcha := easyCaptcha.NewGifCaptcha(120, 60, 4)
+	err := gifCaptcha.SaveFile(GifPath)
+	fmt.Println(err)
+
+	text := gifCaptcha.Text()
+	fmt.Println(text)
+
+	base64, err := gifCaptcha.Base64()
+	fmt.Println(err)
+	fmt.Println(base64)
 }

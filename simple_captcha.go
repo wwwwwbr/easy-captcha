@@ -3,6 +3,7 @@ package easyCaptcha
 import (
 	"bytes"
 	"encoding/base64"
+	"fmt"
 	"image"
 	"image/color"
 	"image/png"
@@ -12,13 +13,13 @@ import (
 	"github.com/golang/freetype/truetype"
 )
 
-type SimpleCaptcha struct {
+type simpleCaptcha struct {
 	baseCaptcha
 	img *image.Image
 }
 
 func NewSimpleCaptcha(width, height, size int) Captcha {
-	sc := &SimpleCaptcha{
+	sc := &simpleCaptcha{
 		baseCaptcha: baseCaptcha{
 			bgColor:   color.White,
 			width:     width,
@@ -33,16 +34,24 @@ func NewSimpleCaptcha(width, height, size int) Captcha {
 	return c
 }
 
-// 生成图片
-func (s *SimpleCaptcha) generator() {
-
+func (s *simpleCaptcha) randomText() {
+	fmt.Println("2:" + s.text)
+	if s.text != "" {
+		return
+	}
+	fmt.Println("3:" + s.text)
 	// 生成文字
 	if s.seed != "" {
 		s.text = randomStringBySeed(s.size, s.seed)
 	} else {
 		s.text = randomString(s.size)
 	}
+}
 
+// 生成图片
+func (s *simpleCaptcha) generator() {
+
+	s.randomText()
 	// 设置背景颜色
 	bg := gg.NewContext(s.width, s.height)
 	bg.SetColor(s.bgColor)
@@ -90,14 +99,15 @@ func (s *SimpleCaptcha) generator() {
 	s.generated = true
 }
 
-func (s *SimpleCaptcha) Text() string {
+func (s *simpleCaptcha) Text() string {
+	s.randomText()
 	if !s.generated {
 		s.generator()
 	}
 	return s.text
 }
 
-func (s *SimpleCaptcha) GetBytes() ([]byte, error) {
+func (s *simpleCaptcha) GetBytes() ([]byte, error) {
 	if !s.generated {
 		s.generator()
 	}
@@ -112,7 +122,7 @@ func (s *SimpleCaptcha) GetBytes() ([]byte, error) {
 	return buf.Bytes(), nil
 }
 
-func (s *SimpleCaptcha) SaveFile(savePath string) error {
+func (s *simpleCaptcha) SaveFile(savePath string) error {
 	if !s.generated {
 		s.generator()
 	}
@@ -124,7 +134,7 @@ func (s *SimpleCaptcha) SaveFile(savePath string) error {
 	return err
 }
 
-func (s *SimpleCaptcha) Base64() (string, error) {
+func (s *simpleCaptcha) Base64() (string, error) {
 	if !s.generated {
 		s.generator()
 	}

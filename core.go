@@ -11,9 +11,12 @@ import (
 const (
 	// 去除容易混淆的字母数字
 	Seed_No_Similar_Alphanumeric = "abcdefghjkmnprstuvwxyzABCDEFGHIJKLMNPQRSTUVWXYZ2345678"
-	Seed_Alphanumeric            = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-	Seed_Alphabetic              = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
-	Seed_Numeric                 = "0123456789"
+	// 字母(a-zA-Z) + 数字(0-9)
+	Seed_Alphanumeric = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+	// 字母(a-zA-Z)
+	Seed_Alphabetic = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+	// 数字(0-9)
+	Seed_Numeric = "0123456789"
 )
 
 type Captcha interface {
