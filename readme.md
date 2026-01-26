@@ -4,6 +4,8 @@
 ![png](example/captcha1.png)
 ![png](example/captcha2.png)
 ![gif](example/captcha.gif)
+![gif](example/captcha_hz.png)
+![gif](example/captcha_calc.png)
 
 ## Install
 
@@ -24,7 +26,11 @@ import (
 ```
 Then, call the function
 ```go
-captcha := easyCaptcha.NewGifCaptcha(120, 60, 4)
+captcha := easyCaptcha.NewGifCaptcha(120, 60, 4) // gif
+//captcha := easyCaptcha.NewSimpleCaptcha(120, 60, 4) // simple
+//captcha := easyCaptcha.exampleChinese(120, 60, 4) // chinese
+//captcha := easyCaptcha.NewCalculationCaptcha(120, 60, 3) // calculate
+
 _ = captcha.SaveFile(GifPath)
 
 text := captcha.Text()

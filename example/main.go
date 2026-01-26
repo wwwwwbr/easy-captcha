@@ -19,7 +19,7 @@ func main() {
 }
 
 func exampleCalc() {
-	calculationCaptcha := easyCaptcha.NewCalculationCaptcha(240, 100, 3)
+	calculationCaptcha := easyCaptcha.NewCalculationCaptcha(180, 60, 3)
 	text := calculationCaptcha.Text()
 	fmt.Println("result:", text)
 	err := calculationCaptcha.SaveFile(CalcPath)
@@ -32,7 +32,7 @@ func exampleChinese() {
 
 	fp := "./example/SIMKAI.TTF"
 
-	captcha := easyCaptcha.NewChineseCaptcha(200, 100, 4, fp)
+	captcha := easyCaptcha.NewChineseCaptcha(140, 60, 4, fp)
 	captcha.SetSeed("零壹贰叁肆伍陆柒捌玖拾佰仟万亿")
 
 	text := captcha.Text()
